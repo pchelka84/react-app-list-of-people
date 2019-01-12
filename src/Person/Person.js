@@ -1,9 +1,11 @@
 import React from "react";
 
-const person = () => {
+const person = props => {
   return (
     <div>
-      <p>I'm a Person and I'm {Math.floor(Math.random() * 30)} years old!</p>
+      <p>
+        I'm a {props.name} and I'm {props.age} years old!
+      </p>
     </div>
   );
 };
