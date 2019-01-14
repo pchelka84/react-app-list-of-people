@@ -82,7 +82,7 @@ class App extends Component {
         <p>This is really working!</p>
 
         <button style={style} onClick={this.togglePerosonsHandler}>
-          Switch name
+          Toggle Persons
         </button>
 
         {persons}
