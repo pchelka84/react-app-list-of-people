@@ -82,7 +82,7 @@ class App extends Component {
 
     // let classes=['red', 'bold'].join(' ') // 'red bold'
 
-    const classes = []; // "red bold"
+    const classes = [];
     if (this.state.persons.length <= 2) {
       classes.push("red"); // classes = ['red']
     }
