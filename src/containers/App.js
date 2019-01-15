@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.css";
 import Persons from "../components/Persons/Persosns";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -29,15 +30,7 @@ class App extends Component {
   };
 
   deletePersonHandler = personIndex => {
-    //copying full persons array with the slice()
-    // const persons = this.state.persons.slice();
-    //copying the full persons array//
-    // spreding out the elements of the persosns array
-    // into a list of elements, which simply then gets added
-    // to [...this.state.persosn]
-    // so now we have a new arrray with the object from the old array
     const persons = [...this.state.persons];
-    //changing the array by removing one element from personIndex position
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
   };
@@ -49,40 +42,24 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = "";
 
     if (this.state.showPersons) {
       persons = (
-        <div>
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}
-          />
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-      btnClass = classes.Red;
-    }
-
-    // let assignedClasses=['red', 'bold'].join(' ') // 'red bold'
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); // classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
     return (
       <div className={classes.App}>
-        <h1>React App</h1>
-        <p className={assignedClasses.join(" ")}>This is really working!</p>
-
-        <button className={btnClass} onClick={this.togglePerosonsHandler}>
-          Toggle Persons
-        </button>
-
+        <Cockpit
+          ShowPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePerosonsHandler}
+        />
         {persons}
       </div>
     );
