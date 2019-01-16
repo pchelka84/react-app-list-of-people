@@ -3,7 +3,6 @@ import "./Person.css";
 import classes from "./Person.css";
 
 class Person extends Component {
-  state = {};
   render() {
     return (
       <div className={classes.Person}>
