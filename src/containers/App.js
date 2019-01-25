@@ -9,6 +9,16 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
     console.log("[App.js] Inside Constructor", props);
+    this.state = {
+      persons: [
+        { id: "sdfasd", name: "Max", age: 28 },
+        { id: "nfghdg", name: "Jane", age: 34 },
+        { id: "lhukmg", name: "Jake", age: 32 }
+      ],
+      showPersons: false,
+      toggleClicked: 0,
+      authenticated: false
+    };
   }
 
   componentWillMount() {
@@ -47,16 +57,6 @@ class App extends PureComponent {
     );
   }
 
-  state = {
-    persons: [
-      { id: "sdfasd", name: "Max", age: 28 },
-      { id: "nfghdg", name: "Jane", age: 34 },
-      { id: "lhukmg", name: "Jake", age: 32 }
-    ],
-    showPersons: false,
-    toggleClicked: 0
-  };
-
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -89,6 +89,10 @@ class App extends PureComponent {
     });
   };
 
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     console.log("[App.js] Insede render()");
     let persons = null;
@@ -99,6 +103,7 @@ class App extends PureComponent {
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated}
         />
       );
     }
@@ -115,6 +120,7 @@ class App extends PureComponent {
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
+          login={this.loginHandler}
           clicked={this.togglePerosonsHandler}
         />
         {persons}
